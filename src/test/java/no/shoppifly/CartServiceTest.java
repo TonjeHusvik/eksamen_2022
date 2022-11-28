@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class CartServiceTest {
 
     //Kodes ut grunnet MicroMeter
-    /*@Test
+    @Test
     public void shouldRemoveCartAfterCheckout() {
 
         CartService service = new NaiveCartImpl();
@@ -18,6 +18,6 @@ public class CartServiceTest {
         assertNotNull(orderId);
 
         assertEquals(0, service.getAllsCarts().size());
-    }*/
+    }
 
 }
