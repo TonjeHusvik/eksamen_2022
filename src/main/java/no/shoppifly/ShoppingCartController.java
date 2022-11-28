@@ -8,16 +8,21 @@ import java.util.List;
 @RestController()
 public class ShoppingCartController {
 
-    @Autowired
-    private final CartService cartService;
+    /*@Autowired
+    private final CartService cartService;*/
 
-    public ShoppingCartController(CartService cartService) {
-        this.cartService = cartService;
+    @Autowired
+    private final NaiveCartImpl naiveCart;
+
+    public ShoppingCartController(/*CartService cartService, */NaiveCartImpl naiveCart) {
+        //this.cartService = cartService;
+        this.naiveCart = naiveCart;
     }
 
     @GetMapping(path = "/cart/{id}")
     public Cart getCart(@PathVariable String id) {
-        return cartService.getCart(id);
+        return naiveCart.getCart(id);
+        //return cartService.getCart(id);
     }
 
     /**
@@ -27,7 +32,8 @@ public class ShoppingCartController {
      */
     @PostMapping(path = "/cart/checkout")
     public String checkout(@RequestBody Cart cart) {
-        return cartService.checkout(cart);
+        return naiveCart.checkout(cart);
+        //return cartService.checkout(cart);
     }
 
     /**
@@ -38,7 +44,8 @@ public class ShoppingCartController {
      */
     @PostMapping(path = "/cart")
     public Cart updateCart(@RequestBody Cart cart) {
-        return cartService.update(cart);
+        return naiveCart.update(cart);
+        //return cartService.update(cart);
     }
 
     /**
@@ -48,7 +55,8 @@ public class ShoppingCartController {
      */
     @GetMapping(path = "/carts")
     public List<String> getAllCarts() {
-        return cartService.getAllsCarts();
+        return naiveCart.getAllsCarts();
+        //return cartService.getAllsCarts();
     }
 
 
