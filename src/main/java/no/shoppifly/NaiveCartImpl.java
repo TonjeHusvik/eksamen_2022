@@ -1,5 +1,6 @@
 package no.shoppifly;
 
+import io.micrometer.core.instrument.MeterRegistry;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
@@ -8,6 +9,15 @@ import java.util.*;
 class NaiveCartImpl implements CartService {
 
     private final Map<String, Cart> shoppingCarts = new HashMap<>();
+
+    private MeterRegistry meterRegistry;
+
+    /*
+    "✅carts" - Antall handlekurver på et gitt tidspunkt i tid - verdien kan gå opp og ned ettersom kunder sjekker ut handlekurver og nye blir laget.
+    "cartsvalue" - Total sum med penger i handlekurver på et gitt tidspunkt i tid - verdien kan gå opp og ned ettersom kunder sjekker ut handlekurver og nye blir laget.
+    "✅checkouts" - Totalt antall handlevogner er blitt sjekket ut
+    "checkout_latency" - Gjennomsnittlig responstid for Checkout metoden i Controller-klassen.
+     */
 
     @Override
     public Cart getCart(String id) {
@@ -25,12 +35,16 @@ class NaiveCartImpl implements CartService {
 
     @Override
     public String checkout(Cart cart) {
+        meterRegistry.counter("checkouts").increment();
         shoppingCarts.remove(cart.getId());
+
         return UUID.randomUUID().toString();
     }
 
     @Override
     public List<String> getAllsCarts() {
+        meterRegistry.counter("carts").increment();
+        //meterRegistry.counter("cartsvalue").increment();
         return new ArrayList<>(shoppingCarts.keySet());
     }
 
