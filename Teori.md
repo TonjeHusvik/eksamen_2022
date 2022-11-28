@@ -48,7 +48,7 @@ require a pull request before passing > require approvals ( pull requests må go
 spesifiser at man skal docker(image) på kjøre port 8080 fra terminal.
 3.3 - Beskriv deretter med egne ord hva sensor må gjøre for å få sin fork til å laste opp container image til sitt eget ECR repo.
 I AWS > ECR > Create repository > søk etter og trykk på ditt nylagde ECR repo. Oppe til høyre, trykk på knappen som heter 
-"View push commands" > Kopier og lim inn stegene i terminalvinduet i cloud9. Når man har gjort alt vil et image dukke opp i repoet.
+"View push commands" > Kopier og lim inn stegene i terminalvinduet i cloud9. Når man har gjort alt så kan man pushe i cloud 9 og et image vil dukke opp i repoet i ECR. 
 # NOTE TO SELF: latest eller $rev (ELLER BEGGE)
 > Står HVA sensor på gjøre, ikke HVORFOR. Derfor er det lite forklaring
 
