@@ -22,6 +22,10 @@ Først
 ## Del 3 Docker - 20 poeng
 Oppgave 1  - Beskriv hva du må gjøre for å få workflow til å fungere med din DockerHub konto? Hvorfor feiler workflowen?
 
+secrets, repo i docker hub blir laget automatisk når docker.yml bygger
+
+spesifiser at man skal kjøre port 8080
+
 ## Del 4 Del - Metrics med Micrometer 20 poeng
 
 
