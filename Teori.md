@@ -32,14 +32,11 @@ Teamet overleverer kode til en annen avdelng som har ansvar for drift - hva er u
 ## Del 2 CI - 20 poeng
 2.1 - yml - 
 ![img.png](img.png)
-
 2.2 - mvn -B package vil kjøre med tester.
-
 2.3 - Branch protection og status sjekker - Beskriv hva sensor må gjøre for å konfigurere sin fork på en slik måte at
 Ingen kan pushe kode direkte på main branch
 Kode kan merges til main branch ved å lage en Pull request med minst en godkjenning
 Kode kan merges til main bare når feature branchen som pull requesten er basert på, er verifisert av GitHub Actions.
-
 Gå til fork > settings > branch protection > add > main > pull request before merge > require status check nefore merging >
 do not allow bypassing the above settings (gjør at man ikke kan gjøre merge hvis koden ikke kompilerer) + edit (på eksisterende) >
 require a pull request before passing > require approvals ( pull requests må godkjennes av andre)
@@ -47,15 +44,18 @@ require a pull request before passing > require approvals ( pull requests må go
 
 ## Del 3 Docker - 20 poeng
 3.1  - secrets, repo i docker hub blir laget automatisk når docker.yml bygger. Docker hub.
-
 3.2 - endret Dockerfile, fjernet alt med maven (duplikat fra ci.yml) i yml-fil
-spesifiser at man skal docker(image) på kjøre port 8080 fra terminal. 
-
+spesifiser at man skal docker(image) på kjøre port 8080 fra terminal.
 3.3 - Beskriv deretter med egne ord hva sensor må gjøre for å få sin fork til å laste opp container image til sitt eget ECR repo.
-
+I AWS > ECR > Create repository > søk etter og trykk på ditt nylagde ECR repo. Oppe til høyre, trykk på knappen som heter 
+"View push commands" > Kopier og lim inn stegene i terminalvinduet i cloud9. Når man har gjort alt vil et image dukke opp i repoet.
+# NOTE TO SELF: latest eller $rev (ELLER BEGGE)
+> Står HVA sensor på gjøre, ikke HVORFOR. Derfor er det lite forklaring
 
 ## Del 4 Del - Metrics med Micrometer 20 poeng
+4.1 - 
 
+4.2 - 
 
 ## Del 5 Del - Terraform og CloudWatch Dashboards - 20 poeng
 
