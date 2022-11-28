@@ -17,6 +17,8 @@ Ingen kan pushe kode direkte på main branch
 Kode kan merges til main branch ved å lage en Pull request med minst en godkjenning
 Kode kan merges til main bare når feature branchen som pull requesten er basert på, er verifisert av GitHub Actions.
 
+Først 
+
 ## Del 3 Docker - 20 poeng
 Oppgave 1  - Beskriv hva du må gjøre for å få workflow til å fungere med din DockerHub konto? Hvorfor feiler workflowen?
 
