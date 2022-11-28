@@ -51,8 +51,7 @@ require a pull request before passing > require approvals ( pull requests må go
 3.2 - endret Dockerfile, fjernet alt med maven (duplikat fra ci.yml) i yml-fil
 spesifiser at man skal docker(image) på kjøre port 8080 fra terminal. 
 
-3.3 - AWS > ECR > create new repo
-
+3.3 - Beskriv deretter med egne ord hva sensor må gjøre for å få sin fork til å laste opp container image til sitt eget ECR repo.
 
 
 ## Del 4 Del - Metrics med Micrometer 20 poeng
