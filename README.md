@@ -1,7 +1,7 @@
 # DevOps med gode intensjoner
 
 ## Krav til leveransen
-
+oiewhtfpowøhifgoweihføeowiuhfiuehwkdfghjk
 * Eksamensoppgaven er gitt på GitHub repository ; https://github.com/PGR301-2022/eksamen_2022
 * Du skal ikke lage en fork av dette repositoryet, men kopiere innholdet til et nytt. Årsaken er at sensor vil lage en fork av ditt repo, og arbeidsflyten blir lettere hvis ditt repo ikke er en fork. 
 * Du kan jobbe i et public-, eller privat repo, og deretter gjøre det public noen timer etter innleveringsfrist hvis du er bekymret for plagiat fra medstudenter.
