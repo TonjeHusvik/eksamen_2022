@@ -20,4 +20,8 @@ class Item {
     private int qty;
     private Float unitPrice;
 
+    public Float getUnitPrice() {
+        return unitPrice;
+    }
+
 }
