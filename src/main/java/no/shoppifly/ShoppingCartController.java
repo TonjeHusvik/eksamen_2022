@@ -33,10 +33,10 @@ public class ShoppingCartController implements ApplicationListener<ApplicationRe
     }
 
     /** Checks out a shopping cart. Removes the cart, and returns an order ID @return an order ID */
-    //@Timed("checkout_latency")
+    @Timed("checkout_latency")
     @PostMapping(path = "/cart/checkout")
     public String checkout(@RequestBody Cart cart) {
-        //meterRegistry.counter("checkout").increment();
+        meterRegistry.counter("checkout").increment();
         return cartService.checkout(cart);
     }
 
@@ -65,11 +65,11 @@ public class ShoppingCartController implements ApplicationListener<ApplicationRe
                 b -> b.values().size()).register(meterRegistry);
 
         //sum penger
-        /*Gauge.builder("cartsvalue", shoppingCarts,
+        Gauge.builder("cartsvalue", shoppingCarts,
                 b -> b.values().stream()
                         .flatMap(c -> c.getItems().stream().map(i -> i.getUnitPrice() * i.getQty()))
                         .mapToDouble(Float::doubleValue)
                         .sum())
-                .register(meterRegistry);*/
+                .register(meterRegistry);
     }
 }

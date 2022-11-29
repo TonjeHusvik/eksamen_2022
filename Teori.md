@@ -76,10 +76,10 @@ https://github.com/hashicorp/terraform-provider-aws/issues/423#issuecomment-5100
 
 5.2 - endret i yml fil. dobbeltsjekket med push og pull-request at det fungerer.
 
-5.3 - 
+5.3 - done. 
 
 # Alarm
-
+Fullføre andre før jeg begynner på denne.
 > Nevne at min main branch heter Master, ikke main.
 
 
