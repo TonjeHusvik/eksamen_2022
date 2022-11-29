@@ -66,7 +66,11 @@ Fjern kommentarene fra databacket.tf slik at Terraform-koden også lager en S3 b
 det er den filen som gjør at terraform kan lage, endre og slette infrastruktur i AWS.
 den vet ikke at den eksisterer? Eller så burde man overskrive.
 state, backend, provider, kjører bucket lokalt så den får ikke til å overskrive??
+<<<<<<< HEAD
+
+=======
 Her forteller vi Terraform at state-informasjon skal lagres i S3, i en Bucket som ligger i Stockholm regionen, med et filnavn du selv bestemmer ved å endre "key"
+>>>>>>> 770f4f2a48447aadaa0a823eaa97ff70304fe3ce
 5.2 - 
 
 5.3 - 
