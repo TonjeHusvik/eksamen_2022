@@ -1,18 +1,29 @@
 package no.shoppifly;
 
+import io.micrometer.core.annotation.Timed;
+import io.micrometer.core.instrument.Gauge;
+import io.micrometer.core.instrument.MeterRegistry;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController()
 public class ShoppingCartController {
 
     @Autowired
-    private final CartService cartService;
+    private CartService cartService;
 
-    public ShoppingCartController(CartService cartService) {
-        this.cartService = cartService;
+    @Autowired
+    private MeterRegistry meterRegistry;
+
+    private final Map<String, Cart> shoppingCarts = new HashMap<>();
+
+    ShoppingCartController( MeterRegistry meterRegistry) {
+        this.meterRegistry = meterRegistry;
     }
 
     @GetMapping(path = "/cart/{id}")
@@ -20,36 +31,42 @@ public class ShoppingCartController {
         return cartService.getCart(id);
     }
 
-    /**
-     * Checks out a shopping cart. Removes the cart, and returns an order ID
-     *
-     * @return an order ID
-     */
+    /** Checks out a shopping cart. Removes the cart, and returns an order ID @return an order ID */
+    @Timed("checkout_latency")
     @PostMapping(path = "/cart/checkout")
     public String checkout(@RequestBody Cart cart) {
+        meterRegistry.counter("checkout").increment();
         return cartService.checkout(cart);
     }
 
-    /**
-     * Updates a shopping cart, replacing it's contents if it already exists. If no cart exists (id is null)
-     * a new cart is created.
-     *
-     * @return the updated cart
-     */
+    /** Updates a shopping cart, replacing it's contents if it already exists. If no cart exists (id is null)
+     * a new cart is created. @return the updated cart */
     @PostMapping(path = "/cart")
     public Cart updateCart(@RequestBody Cart cart) {
         return cartService.update(cart);
     }
 
-    /**
-     * return all cart IDs
-     *
-     * @return
-     */
+    /** return all cart IDs @return */
     @GetMapping(path = "/carts")
     public List<String> getAllCarts() {
         return cartService.getAllsCarts();
     }
 
+    /** Denne meter-typen "Gauge" rapporterer en verdi hver gang noen kaller "size" metoden på
+     * Verdisettet til HashMap
+     *
+     * @param applicationReadyEvent */
+    public void onApplicationEvent(ApplicationReadyEvent applicationReadyEvent) {
+        //antall handlekurver
+        Gauge.builder("cart_count", shoppingCarts,
+                b -> b.values().size()).register(meterRegistry);
 
+        //sum penger
+        Gauge.builder("cartsvalue", shoppingCarts,
+                b -> b.values().stream()
+                        .flatMap(c -> c.getItems().stream().map(Item::getUnitPrice))
+                        .mapToDouble(Float::doubleValue)
+                        .sum())
+                .register(meterRegistry);
+    }
 }

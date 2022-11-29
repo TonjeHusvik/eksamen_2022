@@ -53,9 +53,47 @@ I AWS > ECR > Create repository > søk etter og trykk på ditt nylagde ECR repo.
 > Står HVA sensor på gjøre, ikke HVORFOR. Derfor er det lite forklaring
 
 ## Del 4 Del - Metrics med Micrometer 20 poeng
-4.1 - 
+4.1 - la til 2 dependencies i tillegg til metricsconfig-fil
 
-4.2 - 
+4.2 - funker "så der"
 
 ## Del 5 Del - Terraform og CloudWatch Dashboards - 20 poeng
+5.1 - 
+Forklar med egne ord. Hva er årsaken til dette problemet? Hvorfor forsøker Terraform å opprette en bucket, når den allerede eksisterer?
+Gjør nødvendige Endre slik denne slik at Terraform kan kjøres flere ganger uten å forsøke å opprette ressurser hver gang den kjører.
+Fjern kommentarene fra databacket.tf slik at Terraform-koden også lager en S3 bucket.
+
+det er den filen som gjør at terraform kan lage, endre og slette infrastruktur i AWS.
+den vet ikke at den eksisterer? Eller så burde man overskrive.
+state, backend, provider, kjører bucket lokalt så den får ikke til å overskrive??
+
+5.2 - 
+
+5.3 - 
+
+# Alarm
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
