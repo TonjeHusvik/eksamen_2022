@@ -16,7 +16,7 @@ resource "aws_cloudwatch_dashboard" "master" {
             "cart_count.value"
           ]
         ],
-        "period": 15,
+        "period": 100,
         "stat": "Maximum",
         "region": "eu-west-1",
         "title": "Total number of carts"
@@ -35,7 +35,7 @@ resource "aws_cloudwatch_dashboard" "master" {
             "cartsvalue.value"
           ]
         ],
-        "period": 15,
+        "period": 100,
         "stat": "Maximum",
         "region": "eu-west-1",
         "title": "Sum of price"
@@ -54,7 +54,7 @@ resource "aws_cloudwatch_dashboard" "master" {
             "checkout.count"
           ]
         ],
-        "period": 15,
+        "period": 100,
         "stat": "Maximum",
         "region": "eu-west-1",
         "title": "Total checkouts"
@@ -73,7 +73,7 @@ resource "aws_cloudwatch_dashboard" "master" {
             "checkout_latency.avg"
           ]
         ],
-        "period": 15,
+        "period": 100,
         "stat": "Maximum",
         "region": "eu-west-1",
         "title": "Average response time "
