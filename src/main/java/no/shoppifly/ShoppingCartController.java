@@ -5,6 +5,7 @@ import io.micrometer.core.instrument.Gauge;
 import io.micrometer.core.instrument.MeterRegistry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.context.ApplicationListener;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -12,7 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController()
-public class ShoppingCartController {
+public class ShoppingCartController implements ApplicationListener<ApplicationReadyEvent> {
 
     @Autowired
     private CartService cartService;
@@ -32,10 +33,10 @@ public class ShoppingCartController {
     }
 
     /** Checks out a shopping cart. Removes the cart, and returns an order ID @return an order ID */
-    @Timed("checkout_latency")
+    //@Timed("checkout_latency")
     @PostMapping(path = "/cart/checkout")
     public String checkout(@RequestBody Cart cart) {
-        meterRegistry.counter("checkout").increment();
+        //meterRegistry.counter("checkout").increment();
         return cartService.checkout(cart);
     }
 
@@ -49,6 +50,7 @@ public class ShoppingCartController {
     /** return all cart IDs @return */
     @GetMapping(path = "/carts")
     public List<String> getAllCarts() {
+
         return cartService.getAllsCarts();
     }
 
@@ -56,17 +58,18 @@ public class ShoppingCartController {
      * Verdisettet til HashMap
      *
      * @param applicationReadyEvent */
+
     public void onApplicationEvent(ApplicationReadyEvent applicationReadyEvent) {
         //antall handlekurver
         Gauge.builder("cart_count", shoppingCarts,
                 b -> b.values().size()).register(meterRegistry);
 
         //sum penger
-        Gauge.builder("cartsvalue", shoppingCarts,
+        /*Gauge.builder("cartsvalue", shoppingCarts,
                 b -> b.values().stream()
-                        .flatMap(c -> c.getItems().stream().map(Item::getUnitPrice))
+                        .flatMap(c -> c.getItems().stream().map(i -> i.getUnitPrice() * i.getQty()))
                         .mapToDouble(Float::doubleValue)
                         .sum())
-                .register(meterRegistry);
+                .register(meterRegistry);*/
     }
 }

@@ -6,8 +6,8 @@ terraform {
     }
   }
   backend "s3" {
-    bucket = "1013-exam"
-    key    = "1013-exam.state"
-    region = "eu-north-1"
+    bucket = "analytics-1013"
+    key    = "analytics-1013.state"
+    region = "eu-west-1"
   }
 }

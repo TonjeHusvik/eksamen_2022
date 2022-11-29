@@ -9,13 +9,14 @@ on:
 jobs:
   terraform:
     name: "Terraform"
+    needs: build_docker_image
     runs-on: ubuntu-latest
     env:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       AWS_REGION: eu-west-1
-      CANDIDATE_ID: jim
-      CANDIDATE_EMAIL: jim@gaffel.com
+      CANDIDATE_ID: 1013
+      CANDIDATE_EMAIL: tohu008@student.kristiania.no
     steps:
       - uses: actions/checkout@v3
       - name: Setup Terraform
@@ -27,8 +28,10 @@ jobs:
 
       - name: Terraform Plan
         id: plan
-        run: terraform plan  -var="candidate_id=$CANDIDATE_ID" -var="candidate_email=CANDIDATE_EMAIL" -no-color
+        if: github.event_name == 'pull_request'
+        run: terraform plan -var="candidate_id=$CANDIDATE_ID" -var="candidate_email=CANDIDATE_EMAIL" -no-color
         continue-on-error: false
 
       - name: Terraform Apply
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         run: terraform apply -var="candidate_id=$CANDIDATE_ID" -var="candidate_email=$CANDIDATE_EMAIL"  -auto-approve
