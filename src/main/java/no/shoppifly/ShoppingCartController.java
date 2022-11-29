@@ -8,6 +8,7 @@ import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.Duration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,8 +24,9 @@ public class ShoppingCartController implements ApplicationListener<ApplicationRe
 
     private final Map<String, Cart> shoppingCarts = new HashMap<>();
 
-    ShoppingCartController( MeterRegistry meterRegistry) {
+    ShoppingCartController( MeterRegistry meterRegistry, CartService cartService) {
         this.meterRegistry = meterRegistry;
+        this.cartService = cartService;
     }
 
     @GetMapping(path = "/cart/{id}")
@@ -36,7 +38,10 @@ public class ShoppingCartController implements ApplicationListener<ApplicationRe
     //@Timed("checkout_latency")
     @PostMapping(path = "/cart/checkout")
     public String checkout(@RequestBody Cart cart) {
-        //meterRegistry.counter("checkout").increment();
+        long startTime = System.currentTimeMillis();
+        meterRegistry.counter("checkout").increment();
+        meterRegistry.timer("checkout_latency")
+                .record(Duration.ofMillis(System.currentTimeMillis() - startTime));
         return cartService.checkout(cart);
     }
 
@@ -55,9 +60,7 @@ public class ShoppingCartController implements ApplicationListener<ApplicationRe
     }
 
     /** Denne meter-typen "Gauge" rapporterer en verdi hver gang noen kaller "size" metoden på
-     * Verdisettet til HashMap
-     *
-     * @param applicationReadyEvent */
+     * Verdisettet til HashMap @param applicationReadyEvent */
 
     public void onApplicationEvent(ApplicationReadyEvent applicationReadyEvent) {
         //antall handlekurver
@@ -65,11 +68,11 @@ public class ShoppingCartController implements ApplicationListener<ApplicationRe
                 b -> b.values().size()).register(meterRegistry);
 
         //sum penger
-        /*Gauge.builder("cartsvalue", shoppingCarts,
+        Gauge.builder("cartsvalue", shoppingCarts,
                 b -> b.values().stream()
                         .flatMap(c -> c.getItems().stream().map(i -> i.getUnitPrice() * i.getQty()))
                         .mapToDouble(Float::doubleValue)
                         .sum())
-                .register(meterRegistry);*/
+                .register(meterRegistry);
     }
 }
