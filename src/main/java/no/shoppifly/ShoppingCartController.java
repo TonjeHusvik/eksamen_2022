@@ -37,6 +37,7 @@ public class ShoppingCartController implements ApplicationListener<ApplicationRe
     @PostMapping(path = "/cart/checkout")
     public String checkout(@RequestBody Cart cart) {
         meterRegistry.counter("checkout").increment();
+        //meterRegistry.counter("checkout").count();
         return cartService.checkout(cart);
     }
 
