@@ -1,10 +1,10 @@
 name: "Terraform CloudWatch"
-defaults:
-  run:
-    working-directory: infra
 on:
+  push:
+    branches: [ master ]
   pull_request:
-  workflow_dispatch:
+    branches: [ master ]
+
 
 jobs:
   terraform:
@@ -17,20 +17,29 @@ jobs:
       CANDIDATE_ID: 1013
       CANDIDATE_EMAIL: tohu008@student.kristiania.no
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v3
+
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
 
       - name: Terraform Init
+        working-directory: ./infra
         id: init
         run: terraform init
 
       - name: Terraform Plan
+        working-directory: ./infra
         id: plan
         if: github.event_name == 'pull_request'
         run: terraform plan -var="candidate_id=$CANDIDATE_ID" -var="candidate_email=CANDIDATE_EMAIL" -no-color
         continue-on-error: true
 
+      - name: Terraform Plan Status
+        if: steps.plan.outcome == 'failure'
+        run: exit 1
+
       - name: Terraform Apply
+        working-directory: ./infra
         if: github.ref == 'refs/heads/master' && github.event_name == 'push'
         run: terraform apply -var="candidate_id=$CANDIDATE_ID" -var="candidate_email=$CANDIDATE_EMAIL"  -auto-approve
