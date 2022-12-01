@@ -13,7 +13,7 @@ resource "aws_cloudwatch_dashboard" "master" {
         "metrics": [
           [
             "${var.candidate_id}",
-            "cart_count.value"
+            "carts.value"
           ]
         ],
         "period": 10,
