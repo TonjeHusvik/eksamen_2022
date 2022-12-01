@@ -54,10 +54,10 @@ resource "aws_cloudwatch_dashboard" "master" {
             "checkout.count"
           ]
         ],
-        "period": 10,
-        "stat": "Maximum",
+        "period": 3600,
+        "stat": "Sum",
         "region": "eu-west-1",
-        "title": "Total checkouts"
+        "title": "Total checkouts per hour"
       }
     },
     {

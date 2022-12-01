@@ -32,6 +32,7 @@ class NaiveCartImpl implements CartService, ApplicationListener<ApplicationReady
         return shoppingCarts.put(cart.getId(), cart);
     }
 
+    @Timed
     @Override
     public String checkout(Cart cart) {
         shoppingCarts.remove(cart.getId());
