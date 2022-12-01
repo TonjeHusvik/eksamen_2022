@@ -8,20 +8,45 @@ Kandidatnummer: 1013
 
 Utfordringene i dag er at måten man jobber på på tvers av ?teamene? er tidkrevende, ueffektiv og gir dyrere kostnader.
 Men DevOps får man en mer effektiv måte å arbeide mellom teamene på, arbeidsoppgaven er skilt mellom teamene og de kan gjøre sitt uten at noen trenger å vente på andre eller å bli forstyrret av konflikter kodemessig. 
-I tillegg vil kostnadene bli lavere da man jobber mer effektiv med mer samarbeid. Man kan si av man har automatisert arbeidsprossesen.
+I tillegg vil kostnadene bli lavere da man jobber mer effektiv med mer samarbeid. Man kan si av man har automatisert arbeidsprossesen == større stabilitet og redusert risiko.
 
+Store bedrifter bruker fremdeles manuelle tester og eget test team, som gjør at de har blitt avhengige av test-team istedenfor å automatisere tester.
+En del bedrifter har også 
 Prinsipper som vanligvis blir brutt er at man skal release sjeldnere enn det som er normalt i dag.
 
 Single piece flow. 
-Reduksjon av “waste” (Lean). 
+Reduksjon av “waste” (Lean) - 
 Gjøre arbeid synlig. 
 Færrest mulig overleveringer.
 Automatisering i form av at prosjektet selv automatiserer. 
 Arbeidsflyt
 Docker Security & vulnerability scanning.
 
+Kontinuerlig forbedring
+Oppdage problemer tidlig
+Lære av egne feil
+værsjonert byggeprosess(github actions)
 
-- *En vanlig respons på mange feil under release av ny funksjonalitet er å gjøre det mindre hyppig, og samtidig forsøke å legge på mer kontroll og QA. Hva er problemet med dette ut ifra et DevOps perspektiv, og hva kan være en bedre tilnærming?*
+DevOps-team kan jobbe med verdifulle features
+i stedet for å bruke tid på drift og vedlikehold av
+infrastruktur
+
+Deploying - ofte, gjerne hver dag eller flere ganger daglig. Automatisert.
+Release - sjeldent. ikke automatisert.
+
+Færrest mulig overleveringer
+Gjøre arbeid synlig - kanban elns
+Identifiser flaskehalser
+Automatiserte tester
+
+Hyppige leveranser av ny funksjonalitet.
+Kort vei til marked
+Utvikling basert på feedback fra brukere.
+
+
+DevOps prinsipper handler om å
+
+- *En vanlig respons på mange feil under release av ny funksjonalitet er å gjøre det mindre hyppig, og samtidig forsøke å legge på mer kontroll og QA(Quality assurance). Hva er problemet med dette ut ifra et DevOps perspektiv, og hva kan være en bedre tilnærming?*
 
 En bedre tilnærming kan være å
 
@@ -33,7 +58,8 @@ Er den
 
 - *Å release kode ofte kan også by på utfordringer. Beskriv hvilke- og hvordan vi kan bruke DevOps prinsipper til å redusere eller fjerne risiko ved hyppige leveraner.*
 
-svar
+
+
 
 
 ## Del - 2 CI
@@ -55,12 +81,12 @@ Gå til ditt forkede repository > Settings > Branches > `add branch protection r
 
 ## Del 3 - Docker
 # FERDIG
-*Beskriv med egne ord hva du må gjøre for å få workflow til å fungere med din DockerHub konto? Hvorfor feiler workflowen?* 
+- *Beskriv med egne ord hva du må gjøre for å få workflow til å fungere med din DockerHub konto? Hvorfor feiler workflowen?* 
 
 Jeg la merke til at det er secrets i worklflow-filen som skal inneholde brukernavn og token(passord) som man må legge inn i Github slik at feltene vår sine verdier. 
 I Docker Hub blir repoet laget automatisk når docker.yml bygger. I oppgave 3 blir dette fjernet og erstattet med sende Docker image til ECR istedet.
 
-*Beskriv deretter med egne ord hva sensor må gjøre for å få sin fork til å laste opp container image til sitt eget ECR repo.*
+- *Beskriv deretter med egne ord hva sensor må gjøre for å få sin fork til å laste opp container image til sitt eget ECR repo.*
 
 I AWS > ECR > Create repository > søk etter og trykk på ditt nylagde ECR repo. Oppe til høyre, trykk på knappen som heter "View push commands" > Kopier og lim inn stegene i terminalvinduet i cloud9. Når man har gjort alt så kan man pushe i cloud9 (eller ønsket IDE) og et image vil dukke opp i repoet i ECR.
 
@@ -73,25 +99,23 @@ Ingen drøftingsoppgaver i del 4.
 
 ## Del 5 - Terraform og CloudWatch Dashboards
 ### FERDIG
-*Forklar med egne ord. Hva er årsaken til dette problemet? Hvorfor forsøker Terraform å opprette en bucket, når den allerede eksisterer?*
+- *Forklar med egne ord. Hva er årsaken til dette problemet? Hvorfor forsøker Terraform å opprette en bucket, når den allerede eksisterer?*
 
-Jeg fikk løst problemet ved å endre S3 bucket fra resource til data.
+Jeg fikk løst problemet ved å endre S3 bucket fra resource til data, men det virker som det er to (eller flere) måter å fikse dette på. 
+Grunnen til at det funker å endre til data er fordi *vetikke* 
 
-Filen gjør at terraform kan lage, endre og slette infrastruktur i AWS.
+Den andre måten jeg vet om man kan gjøre for å fikse feilmeldingen er å importere ressurser til terraform med denne kommanboen: `terraform import aws_s3_bucket.mybucket bucket-name`, siden bucket allerede er laget fra før av.
 
-state, backend, provider, kjører bucket lokalt så den får ikke til å overskrive??
 
-Her forteller vi Terraform at state-informasjon skal lagres i S3, i en Bucket som ligger i Stockholm regionen, med et filnavn du selv bestemmer ved å endre "key"
-
-https://github.com/hashicorp/terraform-provider-aws/issues/423#issuecomment-510072042
+State fil oppdaterer ikke seg selv?
 
 
 ## Alarmer
-Ingen drøftingsoppgaver.
+Ingen drøftingsoppgaver i alarmer.
 
 
 ### Bonusoppgave - 5 Poeng
-Vi fant aldri ut av hvorfor ovnernevnte problem oppstår av og til med Maven i Cloud9. Hvis du klarer å reprodusere feilen konsekvent og kan komme med en forklaring på hvorfor dette skjer, og hva vi kan gjøre for å fikse det, gis 5 ekstra poeng.
+- *Vi fant aldri ut av hvorfor ovnernevnte problem oppstår av og til med Maven i Cloud9. Hvis du klarer å reprodusere feilen konsekvent og kan komme med en forklaring på hvorfor dette skjer, og hva vi kan gjøre for å fikse det, gis 5 ekstra poeng.*
 
 java.lang.Error:
 Unresolved compilation problem:
@@ -102,6 +126,9 @@ Dette gjorde jeg for å få problemet:
 
 Dette gjorde jeg for å fikse problemet:
 
+
+## Kilder
+[S3 Bucket already excist](https://github.com/hashicorp/terraform-provider-aws/issues/423#issuecomment-510072042)
 
 
 
