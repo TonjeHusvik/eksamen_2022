@@ -76,7 +76,7 @@ resource "aws_cloudwatch_dashboard" "master" {
         "period": 10,
         "stat": "Average",
         "region": "eu-west-1",
-        "title": "Average response time "
+        "title": "Average response time in checkout"
       }
     }
   ]
