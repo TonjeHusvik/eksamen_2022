@@ -44,14 +44,6 @@ class NaiveCartImpl implements CartService, ApplicationListener<ApplicationReady
         return new ArrayList<>(shoppingCarts.keySet());
     }
 
-    // @author Jim; I'm so proud of this one, took me one week to figure out !!!
-    /*public float total() {
-        return shoppingCarts.values().stream()
-                .flatMap(c -> c.getItems().stream()
-                        .map(i -> i.getUnitPrice() * i.getQty()))
-                .reduce(0f, Float::sum);
-    } */
-
     @Override
     public void onApplicationEvent(ApplicationReadyEvent applicationReadyEvent) {
         Gauge.builder("carts", shoppingCarts,
@@ -63,6 +55,5 @@ class NaiveCartImpl implements CartService, ApplicationListener<ApplicationReady
                                 .mapToDouble(Float::doubleValue)
                                 .sum())
                 .register(meterRegistry);
-
     }
 }
