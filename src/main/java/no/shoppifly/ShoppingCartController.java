@@ -1,5 +1,6 @@
 package no.shoppifly;
 
+import io.micrometer.core.annotation.Timed;
 import io.micrometer.core.instrument.Gauge;
 import io.micrometer.core.instrument.MeterRegistry;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,8 +33,8 @@ public class ShoppingCartController implements ApplicationListener<ApplicationRe
     public Cart getCart(@PathVariable String id) {
         return cartService.getCart(id);
     }
-
-    /** Checks out a shopping cart. Removes the cart, and returns an order ID @return an order ID */
+    @Timed
+    /*Checks out a shopping cart. Removes the cart, and returns an order ID @return an order ID */
     @PostMapping(path = "/cart/checkout")
     public String checkout(@RequestBody Cart cart) {
         long startTime = System.currentTimeMillis();
@@ -55,7 +56,6 @@ public class ShoppingCartController implements ApplicationListener<ApplicationRe
     /** return all cart IDs @return */
     @GetMapping(path = "/carts")
     public List<String> getAllCarts() {
-
         return cartService.getAllsCarts();
     }
 
@@ -64,8 +64,10 @@ public class ShoppingCartController implements ApplicationListener<ApplicationRe
 
     public void onApplicationEvent(ApplicationReadyEvent applicationReadyEvent) {
         //antall handlekurver
-        Gauge.builder("carts", shoppingCarts,
-                b -> b.values().size()).register(meterRegistry);
+        /*Gauge.builder("carts", shoppingCarts,
+                b -> b.values().size()).register(meterRegistry); Fungerer ikke som jeg vil.*/
+        Gauge.builder("carts", cartService,
+                s -> s.getAllsCarts().size()).register(meterRegistry);
 
         //sum penger
         Gauge.builder("cartsvalue", shoppingCarts,
@@ -74,6 +76,7 @@ public class ShoppingCartController implements ApplicationListener<ApplicationRe
                         .mapToDouble(Float::doubleValue)
                         .sum())
                 .register(meterRegistry);
+
 
     }
 }

@@ -1,9 +1,6 @@
 package no.shoppifly;
 
 import io.micrometer.core.annotation.Timed;
-import io.micrometer.core.instrument.Gauge;
-import io.micrometer.core.instrument.MeterRegistry;
-import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
@@ -13,18 +10,6 @@ class NaiveCartImpl implements CartService {
 
     private final Map<String, Cart> shoppingCarts = new HashMap<>();
 
-    private MeterRegistry meterRegistry;
-
-    NaiveCartImpl(MeterRegistry meterRegistry) {
-        this.meterRegistry = meterRegistry;
-    }
-
-    /*
-    "✅carts" - Antall handlekurver på et gitt tidspunkt i tid - verdien kan gå opp og ned ettersom kunder sjekker ut handlekurver og nye blir laget.
-    "✅cartsvalue" - Total sum med penger i handlekurver på et gitt tidspunkt i tid - verdien kan gå opp og ned ettersom kunder sjekker ut handlekurver og nye blir laget.
-    "✅checkouts" - Totalt antall handlevogner er blitt sjekket ut
-    "✅checkout_latency" - Gjennomsnittlig responstid for Checkout metoden i Controller-klassen.
-     */
 
     @Override
     public Cart getCart(String id) {
@@ -53,28 +38,10 @@ class NaiveCartImpl implements CartService {
     }
 
     // @author Jim; I'm so proud of this one, took me one week to figure out !!!
-    public float total() {
+    /*public float total() {
         return shoppingCarts.values().stream()
                 .flatMap(c -> c.getItems().stream()
                         .map(i -> i.getUnitPrice() * i.getQty()))
                 .reduce(0f, Float::sum);
-    }
-
-    /** Denne meter-typen "Gauge" rapporterer en verdi hver gang noen kaller "size" metoden på
-     * Verdisettet til HashMap
-     *
-     * @param applicationReadyEvent */
-    /*public void onApplicationEvent(ApplicationReadyEvent applicationReadyEvent) {
-        //antall handlekurver
-        Gauge.builder("carts", shoppingCarts,
-                b -> b.values().size()).register(meterRegistry);
-
-        //sum penger
-        Gauge.builder("cartsvalue", shoppingCarts,
-                        b -> b.values().stream()
-                                .flatMap(c -> c.getItems().stream().map(Item::getUnitPrice))
-                                .mapToDouble(Float::doubleValue)
-                                .sum())
-                .register(meterRegistry);
     }*/
 }
