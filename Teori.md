@@ -1,13 +1,88 @@
-### Devops eksamen
-I "Free" planen til GitHub er "branch protection" ikke tillat når et repository er privat. Det vil si at dere ikke kan konfigurere GitHub til å hindre push mot for eksempel main branch direkte, eller konfigurere regler for godkjenning før merge av pull request osv.
-I denne oppgaven blir dere bedt om å beskrive hvordan dette kan gjøres, men dere trenger altså ikke konfigurere dette for repoet dere leverer.
+#### Husk å legg til bagdes øverst før levering
 
-Gå til fork > settings > branch protection > add > main > pull request before merge > require status check nefore merging > 
-do not allow bypassing the above settings (gjør at man ikke kan gjøre merge hvis koden ikke kompilerer) + edit (på eksisterende) > 
-require a pull request before passing > require approvals ( pull requests må godkjennes av andre)
+# PGR301 eksamen 2022
+Kandidatnummer: 1013
+
+## Del 1 - DevOps-prinsipper
+- *Hva er utfordringene med dagens systemutviklingsprosess - og hvordan vil innføring av DevOps kunne være med på å løse disse? Hvilke DevOps prinsipper blir brutt?*
+
+Utfordringene i dag er at måten man jobber på på tvers av ?teamene? er tidkrevende, ueffektiv og gir dyrere kostnader.
+Men DevOps får man en mer effektiv måte å arbeide mellom teamene på, arbeidsoppgaven er skilt mellom teamene og de kan gjøre sitt uten at noen trenger å vente på andre eller å bli forstyrret av konflikter kodemessig. 
+I tillegg vil kostnadene bli lavere da man jobber mer effektiv med mer samarbeid. Man kan si av man har automatisert arbeidsprossesen.
+
+Prinsipper som vanligvis blir brutt er at man skal release sjeldnere enn det som er normalt i dag.
 
 
-# Bonusoppgave - 5 Poeng
+- *En vanlig respons på mange feil under release av ny funksjonalitet er å gjøre det mindre hyppig, og samtidig forsøke å legge på mer kontroll og QA. Hva er problemet med dette ut ifra et DevOps perspektiv, og hva kan være en bedre tilnærming?*
+
+En bedre tilnærming kan være å
+
+
+- *Teamet overleverer kode til en annen avdelng som har ansvar for drift - hva er utfordringen med dette ut ifra et DevOps perspektiv, og hvilke gevinster kan man få ved at team han ansvar for både drift- og utvikling?*
+
+Er den 
+
+
+- *Å release kode ofte kan også by på utfordringer. Beskriv hvilke- og hvordan vi kan bruke DevOps prinsipper til å redusere eller fjerne risiko ved hyppige leveraner.*
+
+svar
+
+
+## Del - 2 CI
+# FERDIG
+- *Beskriv hva sensor må gjøre for å konfigurere sin fork på en slik måte at..*
+
+    *..ingen kan pushe kode direkte på main branch*
+    
+    *..kode kan merges til main branch ved å lage en Pull request med minst en godkjenning*
+    
+    *..kode kan merges til main bare når feature branchen som pull requesten er basert på, er verifisert av GitHub Actions.*
+
+Gå til ditt forkede repository > Settings > Branches > `add branch protection rule` > huk av følgende: (se til at default branch er satt til master/main, alt etter hva sensor har på sitt repo)
+
+- `Require a pull request before merging`, huk også av `Require approvals` med 1 som antall som gjør at pull request må godkjennes èn gang av noen andre før merging. I tillegg må du også huke av `Require approval of the most recent push`, denne gjør at man ikke kan pushe kode direkte på main branch.
+
+- `Require status check before merging`, i tillegg til `Require branches to be up to date before merging`. Denne gjør at Github Actions verifiserer koden og gjør at man ikke kan gjøre merge hvis koden ikke kompilerer.
+
+
+## Del 3 - Docker
+# FERDIG
+*Beskriv med egne ord hva du må gjøre for å få workflow til å fungere med din DockerHub konto? Hvorfor feiler workflowen?* 
+
+Jeg la merke til at det er secrets i worklflow-filen som skal inneholde brukernavn og token(passord) som man må legge inn i Github slik at feltene vår sine verdier. 
+I Docker Hub blir repoet laget automatisk når docker.yml bygger. I oppgave 3 blir dette fjernet og erstattet med sende Docker image til ECR istedet.
+
+*Beskriv deretter med egne ord hva sensor må gjøre for å få sin fork til å laste opp container image til sitt eget ECR repo.*
+
+I AWS > ECR > Create repository > søk etter og trykk på ditt nylagde ECR repo. Oppe til høyre, trykk på knappen som heter "View push commands" > Kopier og lim inn stegene i terminalvinduet i cloud9. Når man har gjort alt så kan man pushe i cloud9 (eller ønsket IDE) og et image vil dukke opp i repoet i ECR.
+
+> Står HVA sensor på gjøre, ikke HVORFOR. Derfor er det lite forklaring, burde man ha forklart bedre HVORFOR man vil gjøre det?
+
+
+## Del 4 - Metrics med Micrometer
+Ingen drøftingsoppgaver i del 4.
+
+
+## Del 5 - Terraform og CloudWatch Dashboards
+### FERDIG
+*Forklar med egne ord. Hva er årsaken til dette problemet? Hvorfor forsøker Terraform å opprette en bucket, når den allerede eksisterer?*
+
+Jeg fikk løst problemet ved å endre S3 bucket fra resource til data.
+
+Filen gjør at terraform kan lage, endre og slette infrastruktur i AWS.
+
+state, backend, provider, kjører bucket lokalt så den får ikke til å overskrive??
+
+Her forteller vi Terraform at state-informasjon skal lagres i S3, i en Bucket som ligger i Stockholm regionen, med et filnavn du selv bestemmer ved å endre "key"
+
+https://github.com/hashicorp/terraform-provider-aws/issues/423#issuecomment-510072042
+
+
+## Alarmer
+Ingen drøftingsoppgaver.
+
+
+### Bonusoppgave - 5 Poeng
 Vi fant aldri ut av hvorfor ovnernevnte problem oppstår av og til med Maven i Cloud9. Hvis du klarer å reprodusere feilen konsekvent og kan komme med en forklaring på hvorfor dette skjer, og hva vi kan gjøre for å fikse det, gis 5 ekstra poeng.
 
 java.lang.Error:
@@ -15,72 +90,9 @@ Unresolved compilation problem:
 The method builder() is undefined for the type Cart
 at no.shoppifly.CartServiceTest.shouldRemoveCartAfterCheckout(CartServiceTest.java:13)
 
-maven i cloud 9.
+Dette gjorde jeg for å få problemet:
 
-
-## Del 1 DevOps-prinsipper - 20 poeng
-Hva er utfordringene med dagens systemutviklingsprosess - og hvordan vil innføring av DevOps kunne være med på å løse disse? Hvilke DevOps prinsipper blir brutt?
-Mer effektiv, koster mindre, mer samarbeid. Automatisering, Prinsipper som blir brutt er 
-
-En vanlig respons på mange feil under release av ny funksjonalitet er å gjøre det mindre hyppig, og samtidig forsøke å legge på mer kontroll og QA. Hva er problemet med dette ut ifra et DevOps perspektiv, og hva kan være en bedre tilnærming?
-En bedre tilnærming kan være å
-
-Teamet overleverer kode til en annen avdelng som har ansvar for drift - hva er utfordringen med dette ut ifra et DevOps perspektiv, og hvilke gevinster kan man få ved at team han ansvar for både drift- og utvikling?
-Å release kode ofte kan også by på utfordringer. Beskriv hvilke- og hvordan vi kan bruke DevOps prinsipper til å redusere eller fjerne risiko ved hyppige leveraner.
-
-
-## Del 2 CI - 20 poeng
-2.1 - yml - 
-![img.png](img.png)
-2.2 - mvn -B package vil kjøre med tester.
-2.3 - Branch protection og status sjekker - Beskriv hva sensor må gjøre for å konfigurere sin fork på en slik måte at
-Ingen kan pushe kode direkte på main branch
-Kode kan merges til main branch ved å lage en Pull request med minst en godkjenning
-Kode kan merges til main bare når feature branchen som pull requesten er basert på, er verifisert av GitHub Actions.
-Gå til fork > settings > branch protection > add > main > pull request before merge > require status check nefore merging >
-do not allow bypassing the above settings (gjør at man ikke kan gjøre merge hvis koden ikke kompilerer) + edit (på eksisterende) >
-require a pull request before passing > require approvals ( pull requests må godkjennes av andre)
-
-
-## Del 3 Docker - 20 poeng
-3.1  - secrets, repo i docker hub blir laget automatisk når docker.yml bygger. Docker hub.
-3.2 - endret Dockerfile, fjernet alt med maven (duplikat fra ci.yml) i yml-fil
-spesifiser at man skal docker(image) på kjøre port 8080 fra terminal.
-3.3 - Beskriv deretter med egne ord hva sensor må gjøre for å få sin fork til å laste opp container image til sitt eget ECR repo.
-I AWS > ECR > Create repository > søk etter og trykk på ditt nylagde ECR repo. Oppe til høyre, trykk på knappen som heter 
-"View push commands" > Kopier og lim inn stegene i terminalvinduet i cloud9. Når man har gjort alt så kan man pushe i cloud 9 og et image vil dukke opp i repoet i ECR. 
-# NOTE TO SELF: latest eller $rev (ELLER BEGGE)
-> Står HVA sensor på gjøre, ikke HVORFOR. Derfor er det lite forklaring
-
-## Del 4 Del - Metrics med Micrometer 20 poeng
-4.1 - la til 2 dependencies i tillegg til metricsconfig-fil
-
-4.2 - funker "så der"
-
-## Del 5 Del - Terraform og CloudWatch Dashboards - 20 poeng
-5.1 - 
-Forklar med egne ord. Hva er årsaken til dette problemet? Hvorfor forsøker Terraform å opprette en bucket, når den allerede eksisterer?
-Gjør nødvendige Endre slik denne slik at Terraform kan kjøres flere ganger uten å forsøke å opprette ressurser hver gang den kjører.
-Fjern kommentarene fra databacket.tf slik at Terraform-koden også lager en S3 bucket.
-
-det er den filen som gjør at terraform kan lage, endre og slette infrastruktur i AWS.
-den vet ikke at den eksisterer? Eller så burde man overskrive.
-state, backend, provider, kjører bucket lokalt så den får ikke til å overskrive??
-
-jeg endret s3 bucketen fra resource til data. 
-
-Her forteller vi Terraform at state-informasjon skal lagres i S3, i en Bucket som ligger i Stockholm regionen, med et filnavn du selv bestemmer ved å endre "key"
-
-https://github.com/hashicorp/terraform-provider-aws/issues/423#issuecomment-510072042
-
-
-5.2 - endret i yml fil. dobbeltsjekket med push og pull-request at det fungerer.
-
-5.3 - done. 
-
-# Alarm
-Fullføre andre før jeg begynner på denne.
-> Nevne at min main branch heter Master, ikke main.
+Dette gjorde jeg for å fikse problemet:
 
 
 
