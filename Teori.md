@@ -12,6 +12,14 @@ I tillegg vil kostnadene bli lavere da man jobber mer effektiv med mer samarbeid
 
 Prinsipper som vanligvis blir brutt er at man skal release sjeldnere enn det som er normalt i dag.
 
+Single piece flow. 
+Reduksjon av “waste” (Lean). 
+Gjøre arbeid synlig. 
+Færrest mulig overleveringer.
+Automatisering i form av at prosjektet selv automatiserer. 
+Arbeidsflyt
+Docker Security & vulnerability scanning.
+
 
 - *En vanlig respons på mange feil under release av ny funksjonalitet er å gjøre det mindre hyppig, og samtidig forsøke å legge på mer kontroll og QA. Hva er problemet med dette ut ifra et DevOps perspektiv, og hva kan være en bedre tilnærming?*
 
