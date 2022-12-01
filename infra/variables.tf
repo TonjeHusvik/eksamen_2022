@@ -4,6 +4,6 @@ variable "candidate_id" {
 }
 
 variable "candidate_email" {
-  default = "tohu008@student.kristiania.no"
+  default = "jim@gaffel.com"
   type    = string
 }
