@@ -14,15 +14,15 @@ import java.util.List;
 import java.util.Map;
 
 @RestController()
-public class ShoppingCartController implements ApplicationListener<ApplicationReadyEvent> {
+public class ShoppingCartController /*implements ApplicationListener<ApplicationReadyEvent>*/ {
 
     @Autowired
     private CartService cartService;
 
-    @Autowired
+    //@Autowired
     private MeterRegistry meterRegistry;
 
-    private final Map<String, Cart> shoppingCarts = new HashMap<>();
+    //private final Map<String, Cart> shoppingCarts = new HashMap<>();
 
     ShoppingCartController( MeterRegistry meterRegistry, CartService cartService) {
         this.meterRegistry = meterRegistry;
@@ -33,14 +33,16 @@ public class ShoppingCartController implements ApplicationListener<ApplicationRe
     public Cart getCart(@PathVariable String id) {
         return cartService.getCart(id);
     }
-    @Timed/** Checks out a shopping cart. Removes the cart, and returns an order ID @return an order ID */
+
+    /** Checks out a shopping cart. Removes the cart, and returns an order ID @return an order ID */
+    @Timed
     @PostMapping(path = "/cart/checkout")
     public String checkout(@RequestBody Cart cart) {
         long startTime = System.currentTimeMillis();
         meterRegistry.counter("checkout").increment();
         meterRegistry.timer("checkout_latency")
                 .record(Duration.ofMillis(System.currentTimeMillis() - startTime));
-        shoppingCarts.remove(cart.getId(), cart);
+        //shoppingCarts.remove(cart.getId(), cart);
         return cartService.checkout(cart);
     }
 
@@ -48,7 +50,7 @@ public class ShoppingCartController implements ApplicationListener<ApplicationRe
      * a new cart is created. @return the updated cart */
     @PostMapping(path = "/cart")
     public Cart updateCart(@RequestBody Cart cart) {
-        shoppingCarts.put(cart.getId(), cart);
+        //shoppingCarts.put(cart.getId(), cart);
         return cartService.update(cart);
     }
 
@@ -61,11 +63,11 @@ public class ShoppingCartController implements ApplicationListener<ApplicationRe
     /** Denne meter-typen "Gauge" rapporterer en verdi hver gang noen kaller "size" metoden på
      * Verdisettet til HashMap @param applicationReadyEvent */
 
-    public void onApplicationEvent(ApplicationReadyEvent applicationReadyEvent) {
+    //public void onApplicationEvent(ApplicationReadyEvent applicationReadyEvent) {
         //antall handlekurver
         /*Gauge.builder("carts", shoppingCarts,
                 b -> b.values().size()).register(meterRegistry); Fungerer ikke som jeg vil.*/
-        Gauge.builder("carts", cartService,
+        /*Gauge.builder("carts", cartService,
                 s -> s.getAllsCarts().size()).register(meterRegistry);
 
         //sum penger
@@ -75,7 +77,7 @@ public class ShoppingCartController implements ApplicationListener<ApplicationRe
                         .mapToDouble(Float::doubleValue)
                         .sum())
                 .register(meterRegistry);
+*/
 
-
-    }
+    //}
 }

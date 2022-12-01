@@ -1,15 +1,22 @@
 package no.shoppifly;
 
 import io.micrometer.core.annotation.Timed;
+import io.micrometer.core.instrument.Gauge;
+import io.micrometer.core.instrument.MeterRegistry;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
 
 @Component
-class NaiveCartImpl implements CartService {
+class NaiveCartImpl implements CartService, ApplicationListener<ApplicationReadyEvent> {
 
     private final Map<String, Cart> shoppingCarts = new HashMap<>();
 
+    @Autowired
+    private MeterRegistry meterRegistry;
 
     @Override
     public Cart getCart(String id) {
@@ -25,7 +32,6 @@ class NaiveCartImpl implements CartService {
         return shoppingCarts.put(cart.getId(), cart);
     }
 
-    //@Timed
     @Override
     public String checkout(Cart cart) {
         shoppingCarts.remove(cart.getId());
@@ -38,10 +44,24 @@ class NaiveCartImpl implements CartService {
     }
 
     // @author Jim; I'm so proud of this one, took me one week to figure out !!!
-    public float total() {
+    /*public float total() {
         return shoppingCarts.values().stream()
                 .flatMap(c -> c.getItems().stream()
                         .map(i -> i.getUnitPrice() * i.getQty()))
                 .reduce(0f, Float::sum);
+    } */
+
+    @Override
+    public void onApplicationEvent(ApplicationReadyEvent applicationReadyEvent) {
+        Gauge.builder("carts", shoppingCarts,
+                b -> b.values().size()).register(meterRegistry);
+
+        Gauge.builder("cartsvalue", shoppingCarts,
+                        b -> b.values().stream()
+                                .flatMap(c -> c.getItems().stream().map(i -> i.getUnitPrice() * i.getQty()))
+                                .mapToDouble(Float::doubleValue)
+                                .sum())
+                .register(meterRegistry);
+
     }
 }
