@@ -34,14 +34,13 @@ public class ShoppingCartController implements ApplicationListener<ApplicationRe
     }
 
     /** Checks out a shopping cart. Removes the cart, and returns an order ID @return an order ID */
-    //@Timed("checkout_latency")
     @PostMapping(path = "/cart/checkout")
     public String checkout(@RequestBody Cart cart) {
         long startTime = System.currentTimeMillis();
         meterRegistry.counter("checkout").increment();
         meterRegistry.timer("checkout_latency")
                 .record(Duration.ofMillis(System.currentTimeMillis() - startTime));
-        shoppingCarts.put(cart.getId(), cart);
+        shoppingCarts.remove(cart.getId(), cart);
         return cartService.checkout(cart);
     }
 
