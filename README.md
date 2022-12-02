@@ -1,6 +1,6 @@
 [![CI pipeline](https://github.com/TonjeHusvik/eksamen_2022/actions/workflows/ci.yml/badge.svg)](https://github.com/TonjeHusvik/eksamen_2022/actions/workflows/ci.yml)
 [![Docker build & publish](https://github.com/TonjeHusvik/eksamen_2022/actions/workflows/docker.yml/badge.svg)](https://github.com/TonjeHusvik/eksamen_2022/actions/workflows/docker.yml)
-
+[![Terraform CloudWatch](https://github.com/TonjeHusvik/eksamen_2022/actions/workflows/cloudwatch_dashboard.yml/badge.svg)](https://github.com/TonjeHusvik/eksamen_2022/actions/workflows/cloudwatch_dashboard.yml)
 
 # PGR301 eksamen 2022
 Kandidatnummer: 1013
@@ -27,8 +27,8 @@ Prinsipper som blir brutt av Gaffel consulting er
 - grøsser over at de deployer med feilet kode, men kanskje fordel hvis de driver på med Test Driven Development.
 - å rulle tilbake til forrige versjon kan være problematisk i forhold til alle som har pushet koden sin, og nå mister koden fordi man må rollbacke. Det er synd at de opplevde forsinket funksjonalitet grunnet at koden feilet og de måtte rulle tilbake.
 
-__Leveransen skjer ved at Utviklingsteamet bruker FTP til å overføre en Spring boot JAR sammen med dokumentasjon i en ZIP. En egen avdeling tar i mot disse filene og installerer i AWS / Produksjon.__
-husker ikke hva FTP server var forno. Finn ut om dette er vanlig praksis
+__Leveransen skjer ved at utviklingsteamet bruker FTP til å overføre en Spring boot JAR sammen med dokumentasjon i en ZIP. En egen avdeling tar i mot disse filene og installerer i AWS / Produksjon.__
+Finn ut om dette er vanlig praksis og hva som er galt med dette.
 
 Konklusjon: junior-konsulentene i Gaffel consulting må bli flinkere til å bruke google.
 
