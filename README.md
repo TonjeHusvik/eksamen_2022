@@ -1,4 +1,4 @@
-#### Husk å legg til bagdes øverst før levering
+[![CI pipeline](https://github.com/TonjeHusvik/eksamen_2022/actions/workflows/ci.yml/badge.svg)](https://github.com/TonjeHusvik/eksamen_2022/actions/workflows/ci.yml)
 
 # PGR301 eksamen 2022
 Kandidatnummer: 1013
