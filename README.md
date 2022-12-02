@@ -100,6 +100,7 @@ Feilmeldingen sier at jeg allerede har en eksisterende s3-bucket med dette navne
 Jeg fikk løst problemet ved å importere ressurser til terraform med denne kommanboen: `terraform import aws_s3_bucket.analyticsbucket analytics-1013`, siden bucket allerede er laget fra før av.
 
 > Sjekk om det fungerer i cloud9 så vet man hva som fungerer lokalt og globalt. (data s3 bucket)
+> DEN HETER JO DATABUCKET, ALTSÅ?????
 
 ## Alarmer
 Ingen drøftingsoppgaver i alarmer.
