@@ -97,10 +97,10 @@ Ingen drøftingsoppgaver i del 4.
 - *Forklar med egne ord. Hva er årsaken til dette problemet? Hvorfor forsøker Terraform å opprette en bucket, når den allerede eksisterer?*
 
 Feilmeldingen sier at jeg allerede har en eksisterende s3-bucket med dette navnet, det kan være fordi state-filen til bucketen ikke oppdaterer seg automatisk(??til å eksistere??).
-Jeg fikk løst problemet ved å importere ressurser til terraform med denne kommanboen: `terraform import aws_s3_bucket.analyticsbucket analytics-1013`, siden bucket allerede er laget fra før av.
+Jeg fikk løst problemet ved å endre s3-bucket fra resource til data i databucket.tf, siden den  kun skal brukes med data-analyse så trenger den ikke å være en resource, siden man ikke skal lage noe av den.
 
-> Sjekk om det fungerer i cloud9 så vet man hva som fungerer lokalt og globalt. (data s3 bucket)
-> DEN HETER JO DATABUCKET, ALTSÅ?????
+Ellers så kan man også løse problemet ved å importere ressurser til terraform med denne kommanboen: `terraform import aws_s3_bucket.analyticsbucket analytics-1013`, siden bucket allerede er laget fra før av.
+
 
 ## Alarmer
 Ingen drøftingsoppgaver i alarmer.
