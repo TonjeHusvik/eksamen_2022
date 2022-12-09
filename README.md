@@ -8,6 +8,7 @@ Kandidatnummer: 1013
 ## Del 1 - DevOps-prinsipper
 Jeg er usikker om oppgavene spør etter drøftinger rundt devops-prinsipper generelt eller om det er basert på "Shopifly" og Gaffel consulting vi har fått høre litt om i oppgaven. Jeg går ut fra at første oppgave handler om Gaffel consulting men skriver litt generelt om DevOps på den likevel.
 
+
 - *Hva er utfordringene med dagens systemutviklingsprosess - og hvordan vil innføring av DevOps kunne være med på å løse disse? Hvilke DevOps prinsipper blir brutt?*
 
 DevOps prinsipper handler om å ha en bra arbeidsflyt, kontinuerlig forbedring og å jobbe med en ting av gangen for å oppdage problemer tidlig, 
@@ -26,12 +27,9 @@ Prinsipper som blir brutt av Gaffel consulting er
 - de ansette flere testere er greit for kvalitetssikring er viktig og det er fortsatt behov for manuelle tester, men man kan også bruke automatiserte testere og sikre seg at kode kjører og tester passerer med workflows.
 - grøsser over at de deployer med feilet kode, men kanskje fordel hvis de driver på med Test Driven Development.
 - å rulle tilbake til forrige versjon kan være problematisk i forhold til alle som har pushet koden sin, og nå mister koden fordi man må rollbacke. Det er synd at de opplevde forsinket funksjonalitet grunnet at koden feilet og de måtte rulle tilbake.
-
-__Leveransen skjer ved at utviklingsteamet bruker FTP til å overføre en Spring boot JAR sammen med dokumentasjon i en ZIP. En egen avdeling tar i mot disse filene og installerer i AWS / Produksjon.__
-Finn ut om dette er vanlig praksis og hva som er galt med dette.
+- bruker zip istedenfor github actions/github? Tar tid. Kroklete måte å gjøre det på når det kan automatiseres
 
 Konklusjon: junior-konsulentene i Gaffel consulting må bli flinkere til å bruke google.
-
 
 
 - *En vanlig respons på mange feil under release av ny funksjonalitet er å gjøre det mindre hyppig, og samtidig forsøke å legge på mer kontroll og QA(Quality assurance). 
@@ -42,14 +40,12 @@ Gjør arbeidet synlig for resten av teamet slik at teamet får bedre kontroll.
 I følge DevOps-prinsipper skal man release sjeldent med færrest mulig overleveringer men å gjøre det altfor sjeldent kan gjøre at nye funksjonaliteter blirvforsinket. 
 
 
-
 - *Teamet overleverer kode til en annen avdelng som har ansvar for drift - hva er utfordringen med dette ut ifra et DevOps perspektiv, 
 og hvilke gevinster kan man få ved at team han ansvar for både drift- og utvikling?*
 
 Teamet med driftansvar har mest sannsynlig ventet på leveransen som gir mindre arbeidsflyt, i tillegg så må de sette seg inn i koden. 
 Man gjør ting bedre når man er bevisst på at man skal fortsette med prosjektet kontinuerlig, istedenfor å gjøre raske løsninger for man vet at man aldri skal røre koden igjen etter overlevering. 
 En utvikler som skriver kode bryr seg ikke om drift og vedlikehold av infrastruktur.
-
 
 
 - *Å release kode ofte kan også by på utfordringer. Beskriv hvilke- og hvordan vi kan bruke DevOps prinsipper til å redusere eller fjerne risiko ved hyppige leveranser.*
@@ -59,7 +55,6 @@ Derimot er det sjeldent man releaser kode og man vil ha færrest mulig overlever
 
 Teamet kan heller prøve å jobbe mer med koden, mer bruk av github actions og fokus på byggejobber for mer sikkerhet og robust kode. 
 Det er en ide å ha kontroll over hva andre gjør, altså arbeid mer synlig, med kanban-board for eksempel.
-
 
 
 ## Del - 2 CI
@@ -109,38 +104,15 @@ Ingen drøftingsoppgaver i alarmer.
 
 
 ### Bonusoppgave - 5 Poeng 
-# IKKE FERDIG
 - *Vi fant aldri ut av hvorfor ovnernevnte problem oppstår av og til med Maven i Cloud9. Hvis du klarer å reprodusere feilen konsekvent og kan komme med en forklaring på hvorfor dette skjer, og hva vi kan gjøre for å fikse det, gis 5 ekstra poeng.*
 
-java.lang.Error:
+*java.lang.Error:
 Unresolved compilation problem:
 The method builder() is undefined for the type Cart
-at no.shoppifly.CartServiceTest.shouldRemoveCartAfterCheckout(CartServiceTest.java:13)
+at no.shoppifly.CartServiceTest.shouldRemoveCartAfterCheckout(CartServiceTest.java:13)*
 
 
-Mulig årsak:
-- Lombok ikke installert på korrekt måte. 
-- Mvn fungerer ikke.
-
-Hvorfor:
-
-
-Løsning:
-- Laste ned noe greier
-- Legge til dependency
-- Installere Lombok extension@
-- mvn clean
-
-
-Dette gjorde jeg for å få problemet:
-
-Dette gjorde jeg for å fikse problemet:
-
-https://stackoverflow.com/questions/50991619/the-method-builder-is-undefined-for-the-type-builderexample
-
-https://stackoverflow.com/questions/54128732/builder-annotation-not-working-in-java-class
-
-https://projectlombok.org/setup/maven
+Fikk ikke til å trigge feilmeldingen, men om jeg skulle gjettet tror jeg at det har noe med feil versjon av lombok i pom.xml å gjøre. Jeg satte en eldre versjon der og fikk en lignende feil, bare at den reagerte på feil metoder (gettere og settere) ikke Builder.
 
 
 ## Kilder
