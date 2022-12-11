@@ -116,7 +116,13 @@ Legge inn `DOCKER_HUB_USERNAME` og `DOCKER_HUB_PASSWORD` som samsvarer med bruke
 Sensor må legge inn `AWS_ACCESS_KEY_ID` og `AWS_SECRET_ACCESS_KEY` i secrets i Github Actions. Hvis sensor ikke har nøkler må sensor gå til AWS > IAM > (Quick links -shortcut til høyre) My security credentials > Create access key og fyll nøklene inn i GitHub actions. Settings > Secrets > New repository secret, access key skal være verdien i `AWS_ACCESS_KEY_ID` og secret access key i `AWS_SECRET_ACCESS_KEY`.
 
 Så må sensor endre ECR kommandoene i docker.yml, der det står mitt kandidatnr må endres til sensor's eget repo. Det er uthevet på bildet under hvor sensor må endre til sitt repo. Hvis sensor ikke har ECR repo fra før kan dette lages ved å gå til AWS > ECR > Create repository > navngi repo. 
+
+<br />
+
 <img width="837" alt="image" src="https://user-images.githubusercontent.com/46429425/206769847-f95f722e-eaa4-462f-8c7c-cdcf8ee40471.png">
+
+<br />
+
 Hos meg bruker jeg 1013 begge steder, men grønn er Docker image og lilla er navnet på repoet i ECR.
 
 <br />
