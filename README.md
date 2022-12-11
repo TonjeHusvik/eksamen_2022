@@ -8,38 +8,36 @@ Kandidatnummer: 1013
 ## Del 1 - DevOps-prinsipper
 - *Hva er utfordringene med dagens systemutviklingsprosess - og hvordan vil innføring av DevOps kunne være med på å løse disse? Hvilke DevOps prinsipper blir brutt?*
 
-DevOps prinsipper handler om å ha en bra arbeidsflyt, kontinuerlig forbedring og å jobbe med en ting av gangen for å oppdage problemer tidlig, 
-identifisere flaskehalser og lavere terskel for å lære av egne feil. I tillegg så er det kort vei til marked og stor sannsynlighet for utvikling basert på feedback fra brukere.
 Prinsipper som Gaffel konsulting og Shopifly bryter er at de deployer kode altfor sjeldent, dette gjør at brukere får forsinket funksjonalitet og de kunne blitt kvitt dette med å deploye oftere. Konsulentene deployer også selv om koden har feilet, som gjør at de må rulle tilbake som kan føre til nedetid som tar unødvendig tid og ressurser. 
 
 De ansette flere testere som er greit for kvalitetssikring er viktig og det er fortsatt behov for manuelle tester, men man kan også bruke automatiserte testere og sikre seg at kode kjører og tester passerer med workflows.
 I versjonert byggeprosess som github actions sørger for sikkerhet og sårbarheter ved scanning, dette brukes mye innen DevOps for stabil og robust kode. Her sender teamene zip-filer til hverandre som lastes ned manuelt istedenfor github actions eller elastic beanstalk der det gjøres automatisk som tar lengre tid og fører til waste, så her går det ann å automatisere prosessen. 
 
-
+<br />
 
 - *En vanlig respons på mange feil under release av ny funksjonalitet er å gjøre det mindre hyppig, og samtidig forsøke å legge på mer kontroll og QA(Quality assurance). 
 Hva er problemet med dette ut ifra et DevOps perspektiv, og hva kan være en bedre tilnærming?*
 
 Kvalitetssikring = BRA! En bedre tilnærming kan være å fokusere på bedre testing av funksjonalitet. I tillegg når man har mye release burde man også ha automatisere kvalitetssikrings-prosessen. De burde også gjøre arbeidet synlig for resten av teamet slik at teamet får bedre kontroll ved bruk av for eksempel ....kanbanboard? . I følge DevOps-prinsipper skal man ha sjeldnere overleveringer men å gjøre det altfor sjeldent kan gjøre at nye funksjonaliteter blir forsinket. 
 
-
+<br />
 
 - *Teamet overleverer kode til en annen avdelnig som har ansvar for drift - hva er utfordringen med dette ut ifra et DevOps perspektiv, 
 og hvilke gevinster kan man få ved at team han ansvar for både drift- og utvikling?*
 
 Det kan hende den andre avdelingen må vente på koden som da vil resultere i waste. Her burde man også automatisere prosessen da avdelingene overleverer leveransen med zip-fil. At et team har ansvar for utvikling og drift gjør det enklere å finne problemer i prod, samt å bygge services raskere.
 
-
+<br />
 
 - *Å release kode ofte kan også by på utfordringer. Beskriv hvilke- og hvordan vi kan bruke DevOps prinsipper til å redusere eller fjerne risiko ved hyppige leveranser.*
 
 Man prøver å unngå å release ofte grunnet risiko for nedetid. Hyppige leveranser betyr mindre tid til manuell kvalitetssikring og derfor vil det lurt å ha automatisk kvalitetssikring som automatiske tester og QA. Man vil gjerne ha hyppige deployinger, dette kan gjerne skje ofte og er automatisert. 
-Hvis man er avhengig av andre i prosessen vil dette være waste, all ventetid på andre er unødvendig og ueffektivt. 
+Hvis man er avhengig av andre i prosessen vil dette være waste og all ventetid på andre er unødvendig og ueffektivt. 
 
-Teamet kan heller fokusere på mer bruk av github actions og byggejobber for mer sikkerhet og for å gjøre arbeidet mer synlig. I tillegg burde man ikke godkjenne merge uten tester.
+Teamet kan heller fokusere på mer bruk av github actions og byggejobber for mer sikkerhet og for å gjøre arbeidet mer synlig. 
 
-
-
+<br />
+<br />
 
 ## Del - 2 CI
 *Beskriv hva sensor må gjøre for å konfigurere sin fork på en slik måte at*
@@ -56,6 +54,8 @@ Gå til ditt forkede repository > Settings > Branches > `add branch protection r
 
 - `Require status check before merging`, i tillegg til `Require branches to be up to date before merging`. Denne gjør at Github Actions verifiserer koden og gjør at man ikke kan gjøre merge hvis koden ikke kompilerer.
 
+<br />
+<br />
 
 ## Del 3 - Docker
 - *Beskriv med egne ord hva du må gjøre for å få workflow til å fungere med din DockerHub konto? Hvorfor feiler workflowen?* 
@@ -71,10 +71,14 @@ Så må sensor endre ECR kommandoene i docker.yml, der det står mitt kandidatnr
 <img width="837" alt="image" src="https://user-images.githubusercontent.com/46429425/206769847-f95f722e-eaa4-462f-8c7c-cdcf8ee40471.png">
 Hos meg bruker jeg samme navn(kandidatnr) på begge to, men grønn er Docker image og lilla er navnet på repoet i ECR.
 
+<br />
+<br />
 
 ## Del 4 - Metrics med Micrometer
 Ingen drøftingsoppgaver i del 4.
 
+<br />
+<br />
 
 ## Del 5 - Terraform og CloudWatch Dashboards
 *Konsulentene i Gaffel consulting hadde ambisiøse planer om å få Terraform-koden i dette repoet til å kjøre i GitHub Actions. Workflowen kjørte bra første gang, men nå feiler den hver gang, og klager over at en bucket med samme navn allerede eksisterer. Shopifly har tenkt på bruke denne bucketen til data-analyse.*
@@ -88,10 +92,13 @@ Jeg tolket det slik at siden den kun skal brukes med data-analyse så trenger de
 
 Ellers så kan man også løse problemet ved å importere ressurser til terraform med denne kommanboen: `terraform import aws_s3_bucket.analyticsbucket analytics-1013`, siden bucket allerede er laget fra før av.
 
+<br />
 
 ### Alarmer
 Ingen drøftingsoppgaver i alarmer.
 
+<br />
+<br />
 
 ## Bonusoppgave - 5 Poeng 
 *java.lang.Error:
