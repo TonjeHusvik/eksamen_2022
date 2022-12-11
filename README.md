@@ -8,6 +8,8 @@ Kandidatnummer: 1013
 ## Del 1 - DevOps-prinsipper
 - *Hva er utfordringene med dagens systemutviklingsprosess - og hvordan vil innføring av DevOps kunne være med på å løse disse? Hvilke DevOps prinsipper blir brutt?*
 
+<br />
+
 **Utfordringer:**
 1. Ingen logging/statistikk
 2. De deployer sjeldent
@@ -16,6 +18,8 @@ Kandidatnummer: 1013
 5. De deployer med feil og må rulle tilbake
 6. Leveranse mellom teamene i form av zip-fil
 7. Konsulentene gir opp hvis de ikke får til en oppgave og begynner på andre oppgaver
+
+<br />
 
 **Løsninger:** 
 1. Kort vei til kundebase som gir feedback.
@@ -26,6 +30,7 @@ Kandidatnummer: 1013
 6. Dette kan bli automatisert med github og aws. Å manuelt dele filer på tvers av teamene tar lengre tid og fører til waste.
 7. Må lære av egne feil og selskapet må begynne å organisere kompetanse og implementere devOps.
 
+<br />
 
 **Prinsipper som blir brutt:**
 - Flyt, siden mye av prosjektet ikke er automatisert og at de ikke har behersket bruken av pipelines.
@@ -36,8 +41,8 @@ De bryter altså alle devOps prinsippene.
 
 <br />
 <br />
-- *En vanlig respons på mange feil under release av ny funksjonalitet er å gjøre det mindre hyppig, og samtidig forsøke å legge på mer kontroll og QA(Quality assurance). 
-Hva er problemet med dette ut ifra et DevOps perspektiv, og hva kan være en bedre tilnærming?*
+
+- *En vanlig respons på mange feil under release av ny funksjonalitet er å gjøre det mindre hyppig, og samtidig forsøke å legge på mer kontroll og QA(Quality assurance). Hva er problemet med dette ut ifra et DevOps perspektiv, og hva kan være en bedre tilnærming?*
 
 **Problem:**
 1. Funksjonaliteter blir forsinket
@@ -49,6 +54,7 @@ Hva er problemet med dette ut ifra et DevOps perspektiv, og hva kan være en bed
 
 <br />
 <br />
+
 - *Teamet overleverer kode til en annen avdeling som har ansvar for drift - hva er utfordringen med dette ut ifra et DevOps perspektiv, 
 og hvilke gevinster kan man få ved at team han ansvar for både drift- og utvikling?*
 
@@ -57,12 +63,15 @@ og hvilke gevinster kan man få ved at team han ansvar for både drift- og utvik
 2. Utviklingsteamet gjør ferdig utviklingen og er "ferdig".
 3. Drift må vente på utvikling-team ved f.eks. leveranse av zip-fil, 
  
+ <br />
+ 
 **Gevinster:**
 1. Dette er en typisk flaskehals så gevinsten vil være effektivitet og mindre waste. Det vil også eliminere muligheten til å vente på andre og enklere å finne problemer i prod. 
 2. Om utviklerne også har ansvar for drift vil de aldri bli "ferdig" med prosjektet og utviklerne vil få mer eierskap og ansvar overfor koden slik at den blir oversiktlig og mindre "quick fixes".
 3. Automatisere prosessen.
 
 Det vil også gjøre at teamet jobber mer effektivt og raskere da de slipper å kommunisere og vente på andre avdelinger.
+
 <br />
 <br />
 
