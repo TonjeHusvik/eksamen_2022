@@ -24,14 +24,10 @@ Kvalitetssikring = BRA! En bedre tilnærming kan være å fokusere på bedre tes
 
 <br />
 
-- *Teamet overleverer kode til en annen avdelnig som har ansvar for drift - hva er utfordringen med dette ut ifra et DevOps perspektiv, 
+- *Teamet overleverer kode til en annen avdeling som har ansvar for drift - hva er utfordringen med dette ut ifra et DevOps perspektiv, 
 og hvilke gevinster kan man få ved at team han ansvar for både drift- og utvikling?*
 
 Det kan hende den andre avdelingen må vente på koden som da vil resultere i waste. Her burde man også automatisere prosessen da avdelingene overleverer leveransen med zip-fil. At et team har ansvar for utvikling og drift gjør det enklere å finne problemer i prod, samt å bygge services raskere.
-
-Kan gi mindre overikt over WIP mellom teamene. 
-
-Venting på funksjonalitet.
 
 <br />
 
