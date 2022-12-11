@@ -8,17 +8,19 @@ Kandidatnummer: 1013
 ## Del 1 - DevOps-prinsipper
 - *Hva er utfordringene med dagens systemutviklingsprosess - og hvordan vil innføring av DevOps kunne være med på å løse disse? Hvilke DevOps prinsipper blir brutt?*
 
-Prinsipper som Gaffel konsulting og Shopifly bryter er at de deployer kode altfor sjeldent, dette gjør at brukere får forsinket funksjonalitet og de kunne blitt kvitt dette med å deploye oftere. Konsulentene deployer også selv om koden har feilet, som gjør at de må rulle tilbake som kan føre til nedetid som tar unødvendig tid og ressurser. 
+Innføring i DeovOps hos Shopifly og Gaffel consulting vil føre til mer effektivitet, mulighet for å oppdage  problemer tidligere, og lavere terskel for å lære av egne feil. I tillegg er det kort vei til marked og stor sannsynlighet for utvikling basert på feedback fra brukere.
+Prinsipper som Gaffel consulting og Shopifly bryter er at de deployer kode altfor sjeldent, dette gjør at brukere får forsinket funksjonalitet og de kunne blitt kvitt dette med å deploye oftere. Konsulentene deployer også selv om koden har feilet, som gjør at de må rulle tilbake som kan føre til nedetid som tar unødvendig tid og ressurser. 
 
-De ansette flere testere som er greit for kvalitetssikring er viktig og det er fortsatt behov for manuelle tester, men man kan også bruke automatiserte testere og sikre seg at kode kjører og tester passerer med workflows.
+De ansetter flere testere som er greit siden kvalitetssikring er viktig og det er fortsatt behov for manuelle tester, men man kan også bruke automatiserte testere og sikre seg at kode kjører og tester passerer med workflows.
 I versjonert byggeprosess som github actions sørger for sikkerhet og sårbarheter ved scanning, dette brukes mye innen DevOps for stabil og robust kode. Her sender teamene zip-filer til hverandre som lastes ned manuelt istedenfor github actions eller elastic beanstalk der det gjøres automatisk som tar lengre tid og fører til waste, så her går det ann å automatisere prosessen. 
+
 
 <br />
 
 - *En vanlig respons på mange feil under release av ny funksjonalitet er å gjøre det mindre hyppig, og samtidig forsøke å legge på mer kontroll og QA(Quality assurance). 
 Hva er problemet med dette ut ifra et DevOps perspektiv, og hva kan være en bedre tilnærming?*
 
-Kvalitetssikring = BRA! En bedre tilnærming kan være å fokusere på bedre testing av funksjonalitet. I tillegg når man har mye release burde man også ha automatisere kvalitetssikrings-prosessen. De burde også gjøre arbeidet synlig for resten av teamet slik at teamet får bedre kontroll ved bruk av for eksempel ....kanbanboard? . I følge DevOps-prinsipper skal man ha sjeldnere overleveringer men å gjøre det altfor sjeldent kan gjøre at nye funksjonaliteter blir forsinket. 
+Kvalitetssikring = BRA! En bedre tilnærming kan være å fokusere på bedre testing av funksjonalitet. I tillegg når man har mye release burde man også ha automatisere kvalitetssikrings-prosessen. I følge DevOps-prinsipper skal man ha sjeldnere overleveringer men å gjøre det altfor sjeldent kan gjøre at nye funksjonaliteter blir forsinket. 
 
 <br />
 
@@ -26,6 +28,10 @@ Kvalitetssikring = BRA! En bedre tilnærming kan være å fokusere på bedre tes
 og hvilke gevinster kan man få ved at team han ansvar for både drift- og utvikling?*
 
 Det kan hende den andre avdelingen må vente på koden som da vil resultere i waste. Her burde man også automatisere prosessen da avdelingene overleverer leveransen med zip-fil. At et team har ansvar for utvikling og drift gjør det enklere å finne problemer i prod, samt å bygge services raskere.
+
+Kan gi mindre overikt over WIP mellom teamene. 
+
+Venting på funksjonalitet.
 
 <br />
 
