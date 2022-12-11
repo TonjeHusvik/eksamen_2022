@@ -8,7 +8,7 @@ Kandidatnummer: 1013
 ## Del 1 - DevOps-prinsipper
 - *Hva er utfordringene med dagens systemutviklingsprosess - og hvordan vil innføring av DevOps kunne være med på å løse disse? Hvilke DevOps prinsipper blir brutt?*
 
-Utfordringer: 
+**Utfordringer:**
 1. Ingen logging/statistikk
 2. De deployer sjeldent
 3. Ansatte flere testere til å skrive manuelle tester
@@ -17,7 +17,7 @@ Utfordringer:
 6. Leveranse mellom teamene i form av zip-fil
 7. Konsulentene gir opp hvis de ikke får til en oppgave og begynner på andre oppgaver
 
-Løsninger: 
+**Løsninger:** 
 1. Kort vei til kundebase som gir feedback.
 2. Deploye oftere slik at brukere slipper å få forsinket funksjonalitet
 3. Begynne med og fokusere på automatisert testing. 
@@ -27,7 +27,7 @@ Løsninger:
 7. Må lære av egne feil og selskapet må begynne å organisere kompetanse og implementere devOps.
 
 
-Prinsipper som blir brutt:
+**Prinsipper som blir brutt:**
 - Flyt, siden mye av prosjektet ikke er automatisert og at de ikke har behersket bruken av pipelines.
 - Feedback, da de verken har overvåkning, logging og metrics.
 - Kontinuerlig forbedring, rett og slett fordi de ikke gjør et forsøk på å forbedre seg. Lærer ikke av egne eller hverandres feil og ingen tenker på å nedbetale teknisk gjeld eller waste.
@@ -35,35 +35,35 @@ Prinsipper som blir brutt:
 De bryter altså alle devOps prinsippene.
 
 <br />
-
+<br />
 - *En vanlig respons på mange feil under release av ny funksjonalitet er å gjøre det mindre hyppig, og samtidig forsøke å legge på mer kontroll og QA(Quality assurance). 
 Hva er problemet med dette ut ifra et DevOps perspektiv, og hva kan være en bedre tilnærming?*
 
-Problem:
+**Problem:**
 1. Funksjonaliteter blir forsinket
 2. Manuell QA
 
-Bedre tilnærming: 
+**Bedre tilnærming:** 
 1. Release oftere med mer fokus på automatisering av tester, workflow og branch protection for å forhindre feil under release.
 2. Automatisere testing av kode, slik at man vet at det som kommer gjennom er godkjent
 
 <br />
-
+<br />
 - *Teamet overleverer kode til en annen avdeling som har ansvar for drift - hva er utfordringen med dette ut ifra et DevOps perspektiv, 
 og hvilke gevinster kan man få ved at team han ansvar for både drift- og utvikling?*
 
-Utfordring:
+**Utfordring:**
 1. Hvis drifts-avdeling er på ferie så blir prosjektet satt på vent.
 2. Utviklingsteamet gjør ferdig utviklingen og er "ferdig".
 3. Drift må vente på utvikling-team ved f.eks. leveranse av zip-fil, 
  
-Gevinster:
+**Gevinster:**
 1. Dette er en typisk flaskehals så gevinsten vil være effektivitet og mindre waste. Det vil også eliminere muligheten til å vente på andre og enklere å finne problemer i prod. 
 2. Om utviklerne også har ansvar for drift vil de aldri bli "ferdig" med prosjektet og utviklerne vil få mer eierskap og ansvar overfor koden slik at den blir oversiktlig og mindre "quick fixes".
 3. Automatisere prosessen.
 
 Det vil også gjøre at teamet jobber mer effektivt og raskere da de slipper å kommunisere og vente på andre avdelinger.
-
+<br />
 <br />
 
 - *Å release kode ofte kan også by på utfordringer. Beskriv hvilke- og hvordan vi kan bruke DevOps prinsipper til å redusere eller fjerne risiko ved hyppige leveranser.*
