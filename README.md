@@ -2,7 +2,7 @@
 [![Docker build & publish](https://github.com/TonjeHusvik/eksamen_2022/actions/workflows/docker.yml/badge.svg)](https://github.com/TonjeHusvik/eksamen_2022/actions/workflows/docker.yml)
 [![Terraform CloudWatch](https://github.com/TonjeHusvik/eksamen_2022/actions/workflows/cloudwatch_dashboard.yml/badge.svg)](https://github.com/TonjeHusvik/eksamen_2022/actions/workflows/cloudwatch_dashboard.yml)
 
-# PGR301 eksamen 2022
+# PGR301 DevOps eksamen 2022
 Kandidatnummer: 1013
 
 ## Del 1 - DevOps-prinsipper
@@ -150,7 +150,7 @@ Ingen drøftingsoppgaver i alarmer.
 <br />
 <br />
 
-## Bonusoppgave - 5 Poeng 
+## Bonusoppgave
 *java.lang.Error:
 Unresolved compilation problem:
 The method builder() is undefined for the type Cart at no.shoppifly.CartServiceTest.shouldRemoveCartAfterCheckout(CartServiceTest.java:13)*
